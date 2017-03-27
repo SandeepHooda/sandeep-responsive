@@ -101,8 +101,8 @@ a{color:#336699;}
     color: white;
 }
 
-@media screen and (min-width: 450px) {
-        .hamburger {
+@media screen and (min-width: 451px) {
+        .hamburger, .cross, .menu {
           display: none;
         }
         .topnav {
@@ -110,13 +110,13 @@ a{color:#336699;}
         }
         	
  }
- @media screen and (max-width: 450px) {
+ @media screen and (min-width: 0px)  and (max-width: 450px) {
         
         .hamburger {
        	 display: block;
           
         }
-        .topnav {
+        .topnav , .cross, .menu{
          display: none;
         }
         	
@@ -127,11 +127,11 @@ a{color:#336699;}
   <body>
 <header>
 	<span>Author : <a href="http://glennsmith.me" target="_blank">Sandeep Hooda</a></span>
-  <button id="myHamburger" class="hamburger" onclick="showStuff( 'myCross', 'myHamburger');">&#9776;</button>
-  <button id="myCross" class="cross" style="display: none;" onclick="showStuff('myHamburger', 'myCross');">&#735;</button>
+  <button id="myHamburger" class="hamburger" onclick="showStuff( 'myCross', 'myHamburger');" >&#9776;</button>
+  <button id="myCross" class="cross"    onclick="showStuff('myHamburger', 'myCross');">&#735;</button>
 </header>
 
-<div class="menu" id="myMenu" style="display: none;"  onclick="showStuff('myHamburger', 'myCross');" >
+<div class="menu" id="myMenu"   onclick="showStuff('myHamburger', 'myCross');" >
   <ul>
     <a href="#Home"><li>Home</li></a>
     <a href="#News"><li>News</li></a>
@@ -149,16 +149,20 @@ a{color:#336699;}
 </div>
   </body>
  <script type="text/javascript">
-document.getElementById("myCross").style.display = 'none';
+
 function showStuff(show, hide){
-	document.getElementById(show).style.display = 'block';
-	document.getElementById(hide).style.display = 'none';
+
 	if (show === 'myCross'){
+		document.getElementById('myHamburger').style.display = 'none';
+		document.getElementById('myCross').style.display = 'block';
 		document.getElementById('myMenu').style.display = 'block';
 	}else {
-		
+		document.getElementById('myHamburger').style.display = 'block';
+		document.getElementById('myCross').style.display = 'none';
 		document.getElementById('myMenu').style.display = 'none';
+		
+		
 	}
-}
+} 
 </script>
 </html>
