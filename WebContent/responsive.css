@@ -2,6 +2,48 @@
 	display :none;
 }
 
+.content {
+        display: flex;
+        flex-wrap: wrap;
+}
+.hero, .top-news, .scores, .weather, .recent-news {
+  order: 10;
+}
+
+@media screen and (min-width: 550px) {
+	.hero {
+		width:60%;
+		order:0;
+	}
+	.weather {
+		width:40%;
+		order:1;
+	}
+}
+@media screen and (min-width: 700px) {
+	.hero {
+		width:50%;
+	}
+	.top-news {
+		width:50%;
+		order:1;
+	}
+	 .scores {
+	    order: 2;
+	    width: 60%;
+  	}
+  	.weather {
+    	order: 3;
+  	}
+}
+@media screen and (min-width: 850px) {
+	main, .content, .nav, .header__inner {
+        width: 850px;
+        margin-left :auto;
+        margin-right :auto;
+	}
+}
+
 @media screen and (max-width: 651px) {
 
 	.header__logo {
