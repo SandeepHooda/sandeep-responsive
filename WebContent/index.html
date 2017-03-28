@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="responsive.css">
   </head>
   <body>
-
-    <header class="header">
+ <a href="#Header" class="link-to-top">&#x2191; Top</a>
+    <header class="header" id="Header">
       <div class="header__inner">
         <img class="header__logo" src="images/city.png" alt="iconic view of a cityscape">
         <h1 class="header__title">
@@ -29,10 +29,10 @@
 
     <nav id="drawer" class="nav">
       <ul class="nav__list">
-        <li class="nav__item"><a href="#">News</a></li>
-        <li class="nav__item"><a href="#">Events</a></li>
-        <li class="nav__item"><a href="#">Culture</a></li>
-        <li class="nav__item"><a href="#">Blog</a></li>
+        <li class="nav__item"><a href="#News">News</a></li>
+        <li class="nav__item"><a href="#Events">Events</a></li>
+        <li class="nav__item"><a href="#Weather">Weather</a></li>
+        <li class="nav__item"><a href="#Contact">Contact</a></li>
       </ul>
     </nav>
 
@@ -45,7 +45,7 @@
           </article>
         </section>
 
-        <section class="news top-news">
+        <section class="news top-news" id="News">
           <h2 class="news__title">Top news <a href="#" class="news__more">+ more</a></h2>
           <ul>
             <li class="top-news__item">
@@ -114,7 +114,7 @@
           </table>
         </section>
 
-        <section class="weather">
+        <section class="weather" id="Weather">
           <span class="weather__location">Brighton, UK</span>
           <span class="weather__desc">Sunny</span>
           <span class="weather__today">
@@ -145,7 +145,7 @@
           </ul>
         </section>
 
-        <section class="news recent-news">
+        <section class="news recent-news" id="Events">
           <h2 class="news__title">Latest news <a href="#" class="news__more">+ more</a></h2>
           <ul>
             <li class="snippet">
@@ -178,13 +178,15 @@
           </ul>
         </section>
       </section>
-      <footer>
-        <ul>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Follow us on Twitter</a></li>
-          <li><a href="#">RSS</a></li>
-        </ul>
-      </footer>
+  
+	      <footer id="Contact" >
+	        <ul>
+	          <li><a href="https://www.facebook.com/sandeep.hooda.718">Facebook</a></li>
+	          <li><a href="https://plus.google.com/u/0/101931023868352244414">Google+</a></li>
+	          <li><a href="mailto:sonu.hooda@gmail.com?Subject=Hello">Email</a></li>
+	        </ul>
+	      </footer>
+     
     </main>
   </body>
    <script>
@@ -192,14 +194,14 @@
        * Open the drawer when the menu ison is clicked.
        */
       var menu = document.querySelector('#menu');
-      var main = document.querySelector('main');
+      var body = document.querySelector('body');
       var drawer = document.querySelector('.nav');
 
       menu.addEventListener('click', function(e) {
         drawer.classList.toggle('open');
         e.stopPropagation();
       });
-      main.addEventListener('click', function() {
+      body.addEventListener('click', function() {
         drawer.classList.remove('open');
       });
 
