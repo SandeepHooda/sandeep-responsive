@@ -1,163 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Mostly Fluid</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>hamburger</title>
-<style type="text/css">
-body{
-   font-family: Roboto;
-  font-size: 16px;
-  color: #424242;
-	margin:0;
-	width:100%;
-	height:100vh;
-  	background:#ffffff;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-header{
-	width:100%; 
-	background:#ffffff; 
-	height:60px; 
-	line-height:60px;
-	border-bottom:1px solid #dddddd;
-}
-header{display:inline-block; font-size:16px;}
-span{padding-left:20px;}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      /*
+      These are the default styles. No need to change these.
+      */
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
 
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
 
+      .title {
+        font-size: 2.5em;
+        text-align: center;
+      }
 
-.nav {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.nav__list {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
+      .box {
+        min-height: 150px;
+      }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+      .dark_blue {
+        background-color: #2A457A;
+        color: #efefef;
+      }
 
-.nav a {
-  text-decoration: none;
-  color: #616161;
-}
-.nav__item {
-  box-sizing: border-box;
-  display: inline-block;
-  width: 24%;
-  text-align: center;
-  line-height: 24px;
-  padding: 24px;
-  text-transform: uppercase;
-  border-right:1px solid #E0E0E0;
+      .light_blue {
+        background-color: #099DD9;
+      }
 
-  
-}
-nav {
-  box-shadow: 0 12px 5px rgba(0, 0, 0, 0.26);
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
+      .green {
+        background-color: #0C8542;
+      }
 
- .hamburger{
- display:none;
- } 
-@media screen and (max-width: 650px){
+      .lime {
+        background-color: rgb(179, 210, 52);
+      }
 
+      .seafoam {
+        background-color: rgb(77, 190, 161);
+      }
 
- .nav__item{
- 	display: list-item;
-    border-bottom: 1px solid #E0E0E0;
-    width: 100%;
-   
-    text-align: left;
-    border-left:1px solid #E0E0E0;
-    line-height: 24px;
-    padding: 10px;
- }
- .hamburger {
-	display :block;
-	position: absolute;
-	right: 5px;
-	top:5px;
-	}
-	
-	.hamburger svg {
-    width: 32px;
-    fill: #E0E0E0;
-  }
-   .nav {
-    z-index: 10;
-    background-color: #fff;
-    width: 200px;
-   
-    position: absolute;
-    right:0px;
-    /* This trasform moves the drawer off canvas. */
-    -webkit-transform: translate(-1300px, 0);
-    transform: translate(-1300px, 0);
-    /* Optionally, we animate the drawer. */
-    transition: transform 0.0s ease;
-  }
-  
-  .nav.open {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-}
-</style>
+      .red {
+        background-color: #EC1D3B;
+      }
 
+      .orange {
+        background-color: #F79420;
+      }
+    </style>
+    <style type="text/css">
+      /*
+      These are the responsive styles. Throw some breakpoints in here!
+      */
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .box {
+        width: 100%;
+      }
+
+     
+      @media screen and (min-width: 450px) {
+        .light_blue, .green{
+          width:50%;
+        }
+        	
+      }
+      
+      @media screen and (min-width: 550px) {
+        .red {
+          width:33%;
+        }
+        .orange {
+          width:67%;
+        } 	
+      }
+      @media screen and (min-width: 800px) {
+        .container{
+        width:800px;
+        margin-left:auto;
+        margin-right:auto;
+        }
+      }
+    </style>
   </head>
   <body>
-  
- <main>
-<header>
-	<span>Author : <a href="http://glennsmith.me" target="_blank">Sandeep Hooda</a></span>
-  
-  <a id="menu" class="hamburger">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
-          </svg>
-        </a>
-</header>
-
-<nav id="drawer"  class="nav" >
-  <ul class="nav__list">
-    <li class="nav__item"><a href="#Home">Home</a></li>
-    <li class="nav__item"><a href="#News">News</a></li>
-    <li class="nav__item"><a href="#Contact">Contact</a></li>
-    <li class="nav__item"><a href="#About">About</a></li>
-
-  </ul>
-</nav> 
-
-</main>
+    <div class="container">
+      <div class="box dark_blue"></div>
+      <div class="box light_blue"></div>
+      <div class="box green"></div>
+      <div class="box red"></div>
+      <div class="box orange"></div>
+    </div>
   </body>
- <script>
-      /*
-       * Open the drawer when the menu ison is clicked.
-       */
-      var menu = document.querySelector('#menu');
-      var main = document.querySelector('main');
-      var drawer = document.querySelector('.nav');
-
-      menu.addEventListener('click', function(e) {
-        drawer.classList.toggle('open');
-        e.stopPropagation();
-      });
-      main.addEventListener('click', function() {
-        drawer.classList.remove('open');
-      });
-
-    </script>
 </html>
