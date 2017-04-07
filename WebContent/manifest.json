@@ -1,0 +1,12 @@
+{  
+  "name": "Sandeep Hooda Responsive Demo",  
+  "short_name": "sanhoo RWD",  
+  "icons": [{  
+        "src": "images/Sun-PNG-Image-192x192_icon.png",  
+        "sizes": "192x192",
+        "type": "image/png"
+      }],  
+  "start_url": "/",  
+  "display": "standalone",
+  "gcm_sender_id": "188965476962"
+}
