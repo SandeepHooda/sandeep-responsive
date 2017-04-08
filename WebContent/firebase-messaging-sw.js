@@ -22,15 +22,19 @@ const messaging = firebase.messaging();
 // [START background_handler]
 messaging.setBackgroundMessageHandler(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  // Customize notification here
-  const notificationTitle = 'Hi there!';
-  const notificationOptions = {
+  let notificationTitle = 'Hi there!';
+  let notificationOptions = {
     body: 'We have a new message for you.',
     icon: '/images/baby-50.jpg',
     actions: [  
-    	   {action: 'view', title: 'View msg'},  
-    	   {action: 'reply', title: 'Reply'}]  
+    	   {action: 'view', title: 'I Like it!'}]  
   };
+  // Customize notification here
+  if(payload && payload.data){
+	  notificationTitle = payload.data.title;
+	  notificationOptions.body = payload.data.body;
+  }
+  
 
   return self.registration.showNotification(notificationTitle,
       notificationOptions);

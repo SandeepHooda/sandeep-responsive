@@ -13,6 +13,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Sandeep_responsiveServlet</servlet-name>
-    <url-pattern>/sandeep_responsive</url-pattern>
+    <url-pattern>/test</url-pattern>
   </servlet-mapping>
 </web-app>
