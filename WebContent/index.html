@@ -20,7 +20,7 @@
           Sandeep Hooda RWD & PWA.
         </h1>
         <div>
-        <b> Cmd to build : sw-precache --config sw-precache-config.js</b>
+        <b> Cmd to build : grunt or  sw-precache --config sw-precache-config.js</b>
         </div>
         <a id="menu" class="header__menu">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -42,7 +42,8 @@
     </nav>
 
     <main>
-    <div><button class="js-push-button">Subscribe to Push Notifications</button></div>
+    <div><button class="js-push-button">Subscribe to Push Notifications</button> <button class="js-push-button-not">Un-Subscribe to Push Notifications</button></div>
+    <div id="messages"></div>
       <section class="content">
         <section class="hero">
           <article class="description">
@@ -212,5 +213,6 @@
       });
 
     </script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
     <script src="js/main.js"></script>
 </html>
