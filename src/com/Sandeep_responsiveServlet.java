@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.appengine.api.urlfetch.FetchOptions;
+
 import java.io.BufferedReader;
 
 import java.io.InputStreamReader;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class Sandeep_responsiveServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		FetchOptions.Builder.doNotValidateCertificate();
 		String message = "";
 		JSONObject jsonObj = new JSONObject();
 		try {
@@ -31,7 +35,7 @@ public class Sandeep_responsiveServlet extends HttpServlet {
 		}
 
 		// [START complex]
-	    URL url = new URL("https://fcm.googleapis.com/fcm/send/" );
+	    URL url = new URL("https://fcm.googleapis.com/fcm/send" );
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	    conn.setDoOutput(true);
 	    conn.setRequestMethod("POST");
@@ -39,7 +43,7 @@ public class Sandeep_responsiveServlet extends HttpServlet {
 	    conn.setRequestProperty("Content-Type","application/json");
 	    
 	    OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-	    writer.write(URLEncoder.encode(jsonObj.toString(), "UTF-8"));
+	    writer.write(jsonObj.toString());
 	    writer.close();
 
 	    int respCode = conn.getResponseCode();  // New items get NOT_FOUND on PUT
@@ -53,10 +57,17 @@ public class Sandeep_responsiveServlet extends HttpServlet {
 	        response.append(line);
 	      }
 	      reader.close();
-	      message = "All good";
+	      message = "All good "+response.toString();
 	      req.setAttribute("response", response.toString());
 	    } else {
-	    	message += conn.getResponseCode() +conn.getResponseMessage();
+	    	StringBuffer response = new StringBuffer();
+		      String line;
+	    	BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		      while ((line = reader.readLine()) != null) {
+		        response.append(line);
+		      }
+		      reader.close();
+	    	message += conn.getResponseCode() +" "+conn.getResponseMessage()+" "+response.toString();
 	      
 	    }
 	    // [END complex]
