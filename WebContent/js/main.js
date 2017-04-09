@@ -1,4 +1,5 @@
-
+var userToken = "";
+var showNotification = false;
 // Initialize Firebase
 	  var config = {
 	    apiKey: "AIzaSyB7ynFRD5cAGszNGm9-GV711QzfkyEBnrY",
@@ -11,17 +12,33 @@
 	  firebase.initializeApp(config);
 	  const messaging = firebase.messaging();  
 	  getToken();
+	  
 	  function getToken(){
 		
 			    messaging.getToken()
 			    .then(function(refreshedToken) {
 			      console.log('Token refreshed '+refreshedToken);
-			     
-			      //sendTokenToServer(refreshedToken);
+			      userToken = refreshedToken;
+			      if (userToken && window.localStorage.getItem('subscribe') === '1'){
+			    	
+			    	  document.getElementById("onoffswitchNotification").checked = true; 
+			    	  showNotification = true;
+			    	  demoNotification.disabled = false;
+			    	
+				  }else {
+					  window.localStorage.setItem('subscribe',0);
+					  document.getElementById("onoffswitchNotification").checked = false;
+					  showNotification = false;
+					  demoNotification.disabled = true;
+				  }
 			     
 			    })
 			    .catch(function(err) {
 			      console.log('Unable to retrieve refreshed token## ', err);
+			      document.getElementById("onoffswitchNotification").checked = false;
+			      window.localStorage.setItem('subscribe',0);
+			      showNotification = false;
+			      demoNotification.disabled = true;
 			      //showToken('Unable to retrieve refreshed token ', err);
 			    });
 		
@@ -83,37 +100,28 @@ if('serviceWorker' in navigator) {
 
 // Setup Push notifications
 
-var pushButton = document.querySelector('.js-push-button');
-var unsubscribeButton = document.querySelector('.js-push-button-not');
-pushButton.addEventListener('click', subscribe);
-unsubscribeButton.addEventListener('click', unsubscribe);
 
+var demoNotification = document.querySelector('.js-push-button-demo');
 
-function unsubscribe() {
-	navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-		  serviceWorkerRegistration.pushManager.getSubscription().then(function(sub){
-			  console.log("sub info ", sub);
-			  if (null != sub){
-				  sub.unsubscribe().then(function(successful) {
-					  pushButton.disabled = false;
-					  unsubscribeButton.disabled = !pushButton.disabled;
-				    }).catch(function(e) {
-				    	pushButton.disabled = true;
-						  unsubscribeButton.disabled = !pushButton.disabled;
-				    })
-				  
-			  }
-		  });
-	  });
+demoNotification.addEventListener('click', demoNotify);
+demoNotification.disabled = true;
+
+/*function unsubscribe() {
+	window.localStorage.setItem('subscribe', 0);
+	document.getElementById("onoffswitchNotification").checked = false;
+}*/
+function demoNotify() {
+	window.open('https://sandeephoodaiot.appspot.com/pushnotification?to='+userToken, '_blank');
+	
 }
 function subscribe(){
-	pushButton.disabled = true;
+	
 	messaging.requestPermission()
 	.then(function() {
 	  console.log('Notification permission granted.');
-	// TODO(developer): Retrieve an Instance ID token for use with FCM.
+	  window.localStorage.setItem('subscribe', 1);
 	  getToken();
-	  unsubscribeButton.disabled = !pushButton.disabled;
+	 
 	})
 	.catch(function(e) {
 	  console.log('Unable to get permission to notify.', e);
@@ -122,15 +130,21 @@ function subscribe(){
           // means we failed to subscribe and the user will need  
           // to manually change the notification permission to  
           // subscribe to push messages  
+		  alert("You have denied permission in past. To Subscribe again enable notification for this site from settings tab of your browser.");
+		  window.localStorage.setItem('subscribe', 0);
+		  document.getElementById("onoffswitchNotification").checked = false; 
+		  demoNotification.disabled = true;
           console.warn('Permission for Notifications was denied');
-          pushButton.disabled = true;
+         
         } else {
           // A problem occurred with the subscription; common reasons  
           // include network errors, and lacking gcm_sender_id and/or  
           // gcm_user_visible_only in the manifest.  
           console.error('Unable to subscribe to push.', e);
-          pushButton.disabled = false;
-          pushButton.textContent = 'Enable Push Messages';
+          window.localStorage.setItem('subscribe', 0);
+          document.getElementById("onoffswitchNotification").checked = false; 
+          demoNotification.disabled = true;
+     
         }
 	});
 }
@@ -141,13 +155,12 @@ function _subscribe() {
   // we process the permission request  
  
 
-  
-    pushButton.disabled = true;
+
      navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe({ userVisibleOnly: true })
       .then(function(subscription) {
         // The subscription was successful  
-    	  unsubscribeButton.disabled = !pushButton.disabled;
+    	 
         console.log("Subscription ",subscription)
         // TODO: Send the subscription.endpoint to your server  
         // and save it to send a push message at a later date
@@ -160,14 +173,13 @@ function _subscribe() {
           // to manually change the notification permission to  
           // subscribe to push messages  
           console.warn('Permission for Notifications was denied');
-          pushButton.disabled = true;
+        
         } else {
           // A problem occurred with the subscription; common reasons  
           // include network errors, and lacking gcm_sender_id and/or  
           // gcm_user_visible_only in the manifest.  
           console.error('Unable to subscribe to push.', e);
-          pushButton.disabled = false;
-          pushButton.textContent = 'Enable Push Messages';
+         
         }
       });
   });

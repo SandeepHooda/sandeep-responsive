@@ -27,7 +27,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
     body: 'We have a new message for you.',
     icon: '/images/baby-50.jpg',
     actions: [  
-    	   {action: 'view', title: 'I Like it!'}]  
+    	   {action: 'view', title: '👍 I Like it!' }]  
   };
   // Customize notification here
   if(payload && payload.data){

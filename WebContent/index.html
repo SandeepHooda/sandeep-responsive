@@ -42,7 +42,22 @@
     </nav>
 
     <main>
-    <div><button class="js-push-button">Subscribe to Push Notifications</button> <button class="js-push-button-not">Un-Subscribe to Push Notifications</button></div>
+    <table>
+    <tr>
+    	<td><b>Push notifications:</b> &nbsp;&nbsp;</td>
+    	<td><div class="onoffswitch" >
+		    <input type="checkbox" name="onoffswitchNotification" class="onoffswitch-checkbox" id="onoffswitchNotification" onclick='subscribe()'>
+		    <label class="onoffswitch-label" for="onoffswitchNotification">
+		        <span class="onoffswitch-inner"></span>
+		        <span class="onoffswitch-switch"></span>
+		    </label>
+			</div>
+		</td>
+    	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="js-push-button-demo">Demo for push notification</button></td>
+    </tr>
+    </table>
+   
+   
     <div id="messages"></div>
       <section class="content">
         <section class="hero">
