@@ -1,6 +1,32 @@
- // [START googlecallback]
+function getGoogleInfo(id_token) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if (xmlhttp.status == 200) {
+        	   var resp =  JSON.parse(xmlhttp.responseText);
+               document.getElementById("googleInfo").innerHTML =resp.given_name;
+               document.getElementById("googleInfoImg").src=resp.picture;
+           }
+           else if (xmlhttp.status == 400) {
+              alert('There was an error 400');
+           }
+           else {
+               alert('something else other than 200 was returned');
+           }
+        }
+    };
+    xmlhttp.open("GET", "/GAuth?id_token="+id_token, true);
+    xmlhttp.send(); 
+}
+   
+
+// [START googlecallback]
     function onSignIn(googleUser) {
       console.log('Google Auth Response', googleUser);
+      if (googleUser && googleUser.Zi && googleUser.Zi.id_token) {
+    	  getGoogleInfo(googleUser.Zi.id_token)
+      }
       // We need to register an Observer on Firebase Auth to make sure auth is initialized.
       var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
         unsubscribe();
@@ -63,6 +89,8 @@
       var googleAuth = gapi.auth2.getAuthInstance();
       googleAuth.signOut().then(function() {
         firebase.auth().signOut();
+        document.getElementById("googleInfo").innerHTML ="Guest";
+        document.getElementById("googleInfoImg").src="images/city.png";
       });
     }
     /**
@@ -106,4 +134,4 @@
     }
     window.onload = function() {
       initApp();
-    };
+    }; 

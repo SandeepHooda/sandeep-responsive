@@ -468,6 +468,9 @@ display : inline-flex;
     padding-left: 30px;
     line-height: 30px;
  }
+ .googleInfoStyle {
+ text-align: right;
+ }
 /***
 O Auth CSSS End
 **/

@@ -23,14 +23,20 @@
       <div class="header__inner">
         
         
-   		<img class="header__logo" src="images/city.png" alt="iconic view of a cityscape">
+   		
         <span class="header__title">
           RWD , PWA AND O-Auth2.
         </span>
         <div class=" oauth-button" style="width:140px"  >
 		  	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" id="signin" name="signin" style="display:none"></div>
 		     <button disabled class="signout-btn" id="signout" name="signout" style="display:none">Sign Out</button>
+		     
    		</div>
+   		<div class="googleInfoStyle">
+   		Welcome <span id="googleInfo"></span>
+   		<img id="googleInfoImg" alt="" src="images/city.png" width="50px;" heigh="50px;"/>
+   		</div>
+   		
         <div>
         <b> Cmd to build :  sw-precache --config sw-precache-config.js or grunt (grunt has some cache issues)</b>
         </div>
