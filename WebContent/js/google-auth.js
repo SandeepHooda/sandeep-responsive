@@ -116,6 +116,7 @@ function getGoogleInfo(id_token) {
           document.getElementById("signin").style.display = "none";
           document.getElementById("signout").style.display = "block";
           document.getElementById('signout').disabled = false;
+          
           //document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
           // [END_EXCLUDE]
         } else {
@@ -125,6 +126,7 @@ function getGoogleInfo(id_token) {
           document.getElementById('signout').disabled = true;
           document.getElementById("signin").style.display = "block";
           document.getElementById("signout").style.display = "none";
+          document.getElementById("googleInfo").innerHTML ="Guest";
          // document.getElementById('quickstart-account-details').textContent = 'null';
             // [END_EXCLUDE]
         }
