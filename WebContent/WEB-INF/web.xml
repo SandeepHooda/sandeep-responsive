@@ -15,16 +15,7 @@
     <servlet-name>Sandeep_responsiveServlet</servlet-name>
     <url-pattern>/test</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description>GAuth</description>
-    <display-name>GAuth</display-name>
-    <servlet-name>GAuth</servlet-name>
-    <servlet-class>com.GAuth</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GAuth</servlet-name>
-    <url-pattern>/GAuth</url-pattern>
-  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>GAuth</display-name>
